@@ -36,7 +36,7 @@ run pip install pipx
 # Install jupyterlab and ML packages using host cache
 RUN pip install  --no-cache-dir\
     tensorflow[and-cuda] \
-    torch
+    torch<2.0.1
 
 # Add container user and group
 ARG NB_USER=jovyan
