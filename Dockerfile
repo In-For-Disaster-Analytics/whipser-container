@@ -34,9 +34,9 @@ RUN pip install --upgrade --no-cache-dir \
 run pip install pipx
 
 # Install jupyterlab and ML packages using host cache
-RUN pip install  --no-cache-dir\
-    tensorflow[and-cuda] \
-    torch==2.0.0 pytorch-cuda pytorch
+# RUN pip install  --no-cache-dir\
+#     tensorflow[and-cuda] \
+#     torch==2.0.0 
 
 run pip install insanely-fast-whisper
 
