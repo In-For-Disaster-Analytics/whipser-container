@@ -80,7 +80,7 @@ insanely-fast-whisper --file-name $file_name --diarization_model pyannote/speake
 
 
 
-FULL_GREETING="${$1} ${$2}. My name is ${_tapisJobOwner}"
+FULL_GREETING="${1} ${2}. My name is ${_tapisJobOwner}"
 echo "$FULL_GREETING"
 
 echo $FULL_GREETING > $_tapisExecSystemOutputDir/out.txt
