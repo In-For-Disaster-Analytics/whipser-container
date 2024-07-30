@@ -66,6 +66,7 @@ function delete_conda_environment() {
 export COOKBOOK_CONDA_ENV="whisper"
 export file_name=$1
 export min_speakers = $2
+export UPDATE_CONDA_ENV= true
 install_conda
 load_cuda
 export_repo_variables
