@@ -36,7 +36,12 @@ run pip install pipx
 # Install jupyterlab and ML packages using host cache
 RUN pip install  --no-cache-dir\
     tensorflow[and-cuda] \
-    torch==2.0.0
+    torch==2.0.0 pytorch-cuda pytorch
+
+pip install insanely-fast-whisper
+
+RUN insanely-fast-whisper --file-name $1 --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $2
+
 
 # Add container user and group
 ARG NB_USER=jovyan
