@@ -30,7 +30,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --upgrade --no-cache-dir \
     pip \
     setuptools \
-    wheel\ pipx
+    wheel
+run pip install pipx
 
 # Install jupyterlab and ML packages using host cache
 RUN pip install  --no-cache-dir\
