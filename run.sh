@@ -39,7 +39,7 @@ function conda_environment_exists() {
 }
 
 function create_conda_environment() {
-	conda env create -n ${COOKBOOK_CONDA_ENV} 
+	conda create --name ${COOKBOOK_CONDA_ENV} 
 	conda activate ${COOKBOOK_CONDA_ENV}
 	pip install insanely-fast-whisper
 }
@@ -65,8 +65,8 @@ function delete_conda_environment() {
 }
 export COOKBOOK_CONDA_ENV="whisper"
 export file_name=$1
-export min_speakers = $2
-export UPDATE_CONDA_ENV= true
+export min_speakers=$2
+export UPDATE_CONDA_ENV=true
 install_conda
 load_cuda
 export_repo_variables
