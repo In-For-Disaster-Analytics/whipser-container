@@ -77,7 +77,7 @@ insanely-fast-whisper --file-name $file_name --diarization_model pyannote/speake
 
 
 
-
+nvidia-smi
 
 
 FULL_GREETING="${1} ${2}. My name is ${_tapisJobOwner}"
