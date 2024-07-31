@@ -1,13 +1,13 @@
 {
   "id": "Whisper-Transcription",
-  "version": "0.1.2sha-dda4b92",
+  "version": "0.1.2sha-615a7cf3",
   "description": "Run an non-interactive script on TACC using docker.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "SINGULARITY",
   "runtimeVersion": null,
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/whipser-container:sha-dda4b92",
+  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/whipser-container:sha-615a7cf",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -28,21 +28,54 @@
     "mpiCmd": null,
     "cmdPrefix": "mkdir $PWD/work $PWD/home $PWD/scratch;",
     "parameterSet": {
-      "appArgs": [
-        {
-          "name": "Filename Path",
-          "description": "Select a File path",
-          "inputMode": "REQUIRED",
-          "arg": "--file-name https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
-        },
-        {
-          "name": "Minimum Number of Speakers",
-          "description": "How Many speakers were interviewed",
-          "inputMode": "REQUIRED",
-          "arg": " --min-speakers 1"
-        }
-      ],
+     "appArgs": [
+    {
+      "name": "flag filename",
+      "description": ".",
+      "inputMode": "REQUIRED",
+      "arg": "--file-name",
+      "notes": {
+        "isHidden": true
+      }
+    },
+    {
+      "name": "Filename Path",
+      "description": "Select a File path",
+      "inputMode": "REQUIRED",
+      "arg": "https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
+    },
+    {
+      "name": "Minimum Number of Speakers",
+      "description": "How Many speakers were interviewed",
+      "inputMode": "REQUIRED",
+      "arg": "--min-speakers",
+      "notes": {
+        "isHidden": true
+      }
+    },
+    {
+      "name": "min speakers",
+      "description": "Minimum number of speakers.",
+      "inputMode": "REQUIRED",
+      "arg": "1",
+      "notes": {
+        "isHidden":false
+      }
+    },
+    {
+      "name": "Diaraization Model ",
+      "description": "Diarization Model Name ",
+      "inputMode": "FIXED",
+      "arg": "--diarization_model pyannote/speaker-diarization-3.1",
+      "notes": {
+        "isHidden": true
+      }
+    }
+  ],
       "containerArgs": [
+        
+        
+        
         {
           "name": "Jupyter Mounts",
           "description": "Mount for TAP functions and user dirs",
@@ -52,15 +85,7 @@
             "isHidden": true
           }
         },
-        {
-          "name": "Diaraization Model ",
-          "description": "Diarization Model Name ",
-          "inputMode": "FIXED",
-          "arg": "--diarization_model pyannote/speaker-diarization-3.1",
-          "notes": {
-            "isHidden": true
-          }
-        },
+        
        
           {
             "name": "NVIDIA Flag",

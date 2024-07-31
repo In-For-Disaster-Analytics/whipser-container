@@ -40,7 +40,7 @@ run pip install pipx
 
 run pip install insanely-fast-whisper
 
-ENTRYPOINT [ "python", "insanely-fast-whisper"  ] 
+ENTRYPOINT [ "python3", "insanely-fast-whisper"  ] 
 ## pass these arguments --file-name $1  --min-speakers $2
 
 
