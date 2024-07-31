@@ -33,13 +33,13 @@
           "name": "Filename Path",
           "description": "Select a File path",
           "inputMode": "REQUIRED",
-          "arg": "https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
+          "arg": "--file-name https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
         },
         {
           "name": "Minimum Number of Speakers",
           "description": "How Many speakers were interviewed",
           "inputMode": "REQUIRED",
-          "arg": "1"
+          "arg": " --min-speakers 1"
         }
       ],
       "containerArgs": [
@@ -48,6 +48,15 @@
           "description": "Mount for TAP functions and user dirs",
           "inputMode": "FIXED",
           "arg": "--bind /share,$WORK:$PWD/work,$HOME:$PWD/home,$SCRATCH:$PWD/scratch",
+          "notes": {
+            "isHidden": true
+          }
+        },
+        {
+          "name": "Diaraization Model ",
+          "description": "Diarization Model Name ",
+          "inputMode": "FIXED",
+          "arg": "--diarization_model pyannote/speaker-diarization-3.1",
           "notes": {
             "isHidden": true
           }
