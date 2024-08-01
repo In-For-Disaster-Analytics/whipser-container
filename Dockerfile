@@ -27,7 +27,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
-RUN wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ffmpeg/7:7.0.1-5ubuntu2/ffmpeg_7.0.1.orig.tar.xz && tar -xzf ffmpeg-7.0.tar.xz && ./configure && make && sudo make install
+RUN wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ffmpeg/7:7.0.1-5ubuntu2/ffmpeg_7.0.1.orig.tar.xz &&\
+ tar -xzf ffmpeg-7.0.tar.xz\
+&& cd ffmpeg_7.0.1.orig \
+&& ./configure && make && sudo make install
 
 RUN pip install --upgrade --no-cache-dir \
     pip \
