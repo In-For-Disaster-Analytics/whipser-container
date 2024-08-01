@@ -48,34 +48,8 @@ RUN pip install pipx
 RUN pip install insanely-fast-whisper
 
 ENTRYPOINT [ "insanely-fast-whisper"  ] 
-## pass these arguments --file-name $1  --min-speakers $2
+
+RUN rm ffmpeg_7.0.1.orig.tar.xz
 
 
-# # Add container user and group
-# ARG NB_USER=jovyan
-# ARG NB_UID=1000
-# ARG NB_GID=100
-
-# # Configure environment
-# ENV SHELL=/bin/bash \
-#     NB_USER="${NB_USER}" \
-#     NB_UID=${NB_UID} \
-#     NB_GID=${NB_GID} \
-#     NB_HOME="/home/${NB_USER}" \
-#     LC_ALL=en_US.UTF-8 \
-#     LANG=en_US.UTF-8 \
-#     LANGUAGE=en_US.UTF-8
-
-# # Enable prompt color in the skeleton .bashrc before creating the default NB_USER
-# RUN sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /etc/skel/.bashrc
-
-# # Create NB_USER with UID=NB_UID and GID=NB_GID
-# RUN useradd --no-log-init --create-home --shell /bin/bash --uid "${NB_UID}" --gid "${NB_GID}" "${NB_USER}"
-
-# COPY run.sh /tapis/run.sh
-# RUN pwd
-# RUN chmod +x /tapis/run.sh
-
-# USER ${NB_UID}
-
-# ENTRYPOINT [ "/tapis/run.sh" ]
+RUN ECHO "DONE"

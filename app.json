@@ -1,13 +1,13 @@
 {
   "id": "Whisper-Transcription",
-  "version": "0.1.2sha-9f448df",
+  "version": "0.1.4sha-bc980c7",
   "description": "Run an non-interactive script on TACC using docker.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "SINGULARITY",
   "runtimeVersion": null,
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/whipser-container:sha-9f448df",
+  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/whipser-container:sha-bc980c7",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -70,6 +70,22 @@
       "notes": {
         "isHidden": true
       }
+    },
+    {
+      "name": "Output Path",
+      "description": "Location to Save Output",
+      "inputMode": "FIXED",
+      "arg": "--transcript-path",
+      "notes": {
+        "isHidden":true
+      }
+    },
+    {
+      "name": "Output location",
+      "description": "where to save file ",
+      "inputMode": "REQUIRED",
+      "arg": "$HOME/output.json"
+      
     }
   ],
       "containerArgs": [
