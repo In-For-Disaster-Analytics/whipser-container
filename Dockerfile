@@ -18,8 +18,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
     ssh \
+    yasm\
     wget \
     unzip \
+    tar\
     vim \
     build-essential \
     rsync \
@@ -27,23 +29,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
-RUN wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ffmpeg/7:7.0.1-5ubuntu2/ffmpeg_7.0.1.orig.tar.xz &&\
- tar -xzf ffmpeg-7.0.tar.xz\
-&& cd ffmpeg_7.0.1.orig \
-&& ./configure && make && sudo make install
+RUN wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ffmpeg/7:7.0.1-5ubuntu2/ffmpeg_7.0.1.orig.tar.xz 
+
+RUN  tar -xJf ffmpeg_7.0.1.orig.tar.xz
+RUN ./ffmpeg-7.0.1/configure && make && make install
 
 RUN pip install --upgrade --no-cache-dir \
     pip \
     setuptools \
     wheel
-run pip install pipx
+RUN pip install pipx
 
 # Install jupyterlab and ML packages using host cache
 # RUN pip install  --no-cache-dir\
 #     tensorflow[and-cuda] \
 #     torch==2.0.0 
 
-run pip install insanely-fast-whisper
+RUN pip install insanely-fast-whisper
 
 ENTRYPOINT [ "insanely-fast-whisper"  ] 
 ## pass these arguments --file-name $1  --min-speakers $2
