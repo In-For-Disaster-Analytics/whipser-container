@@ -40,16 +40,10 @@ RUN pip install --upgrade --no-cache-dir \
     wheel
 RUN pip install pipx
 
-# Install jupyterlab and ML packages using host cache
-# RUN pip install  --no-cache-dir\
-#     tensorflow[and-cuda] \
-#     torch==2.0.0 
 
 RUN pip install insanely-fast-whisper
 
 ENTRYPOINT [ "insanely-fast-whisper"  ] 
 
-RUN rm ffmpeg_7.0.1.orig.tar.xz
 
 
-RUN ECHO "DONE"
