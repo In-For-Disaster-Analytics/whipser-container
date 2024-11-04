@@ -65,7 +65,10 @@ function delete_conda_environment() {
 }
 export COOKBOOK_CONDA_ENV="whisper"
 export file_name=$1
-export min_speakers=$2
+export output = $2
+export min_speakers=$3
+echo $file_name
+echo  $min_speakers
 export UPDATE_CONDA_ENV=true
 install_conda
 load_cuda
@@ -73,14 +76,6 @@ export_repo_variables
 init_directory
 handle_installation
 conda activate ${COOKBOOK_CONDA_ENV}
-insanely-fast-whisper --file-name $file_name --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $min_speakers
+insanely-fast-whisper --file-name $file_name --diarization_model nvidia/speakerverification_en_titanet_large --min-speakers $min_speakers --transcript-path $output
 
 
-
-nvidia-smi
-
-
-FULL_GREETING="${1} ${2}. My name is ${_tapisJobOwner}"
-echo "$FULL_GREETING"
-
-echo $FULL_GREETING > $_tapisExecSystemOutputDir/out.txt

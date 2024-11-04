@@ -33,7 +33,7 @@ RUN wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ffmpeg/7:7.0
 
 RUN  tar -xJf ffmpeg_7.0.1.orig.tar.xz
 RUN ./ffmpeg-7.0.1/configure && make && make install
-
+copy . . 
 RUN pip install --upgrade --no-cache-dir \
     pip \
     setuptools \
@@ -43,7 +43,7 @@ RUN pip install pipx
 
 RUN pip install insanely-fast-whisper
 
-ENTRYPOINT [ "insanely-fast-whisper"  ] 
+ENTRYPOINT [ "run.sh"  ] 
 
 
 

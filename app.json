@@ -1,6 +1,6 @@
 {
   "id": "Whisper-Transcription",
-  "version": "0.1.4sha-bc980c7",
+  "version": "0.1.4sha-bc980c7b",
   "description": "Run an non-interactive script on TACC using docker.",
   "owner": "${apiUserId}",
   "enabled": true,
@@ -30,30 +30,6 @@
     "parameterSet": {
      "appArgs": [
     {
-      "name": "flag filename",
-      "description": ".",
-      "inputMode": "REQUIRED",
-      "arg": "--file-name",
-      "notes": {
-        "isHidden": true
-      }
-    },
-    {
-      "name": "Filename Path",
-      "description": "Select a File path",
-      "inputMode": "REQUIRED",
-      "arg": "https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
-    },
-    {
-      "name": "Minimum Number of Speakers",
-      "description": "How Many speakers were interviewed",
-      "inputMode": "REQUIRED",
-      "arg": "--min-speakers",
-      "notes": {
-        "isHidden": true
-      }
-    },
-    {
       "name": "min speakers",
       "description": "Minimum number of speakers.",
       "inputMode": "REQUIRED",
@@ -61,33 +37,23 @@
       "notes": {
         "isHidden":false
       }
-    },
-    {
-      "name": "Diaraization Model ",
-      "description": "Diarization Model Name ",
-      "inputMode": "FIXED",
-      "arg": "--diarization_model pyannote/speaker-diarization-3.1",
-      "notes": {
-        "isHidden": true
-      }
-    },
-    {
-      "name": "Output Path",
-      "description": "Location to Save Output",
-      "inputMode": "FIXED",
-      "arg": "--transcript-path",
-      "notes": {
-        "isHidden":true
-      }
-    },
-    {
-      "name": "Output location",
-      "description": "where to save file ",
-      "inputMode": "REQUIRED",
-      "arg": "$HOME/output.json"
-      
     }
+    
   ],
+  "fileInputs":[ {
+    "name": "Filename Path",
+    "description": "Select a File path",
+    "inputMode": "REQUIRED",
+    "arg": "https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
+  },
+  {
+    "name": "Output location",
+    "description": "where to save file ",
+    "inputMode": "REQUIRED",
+    "arg": "$HOME/output.json"
+    
+  }
+],
       "containerArgs": [
         
         
