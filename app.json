@@ -1,13 +1,13 @@
 {
-  "id": "Whisper-Transcription",
-  "version": "0.1.4sha-bc980c7b",
+  "id": "Whisper-Transcriptionb",
+  "version": "0.1.4sha-6d9584fd",
   "description": "Run an non-interactive script on TACC using docker.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "SINGULARITY",
   "runtimeVersion": null,
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/whipser-container:sha-bc980c7",
+  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/whipser-container:sha-6d9584f",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -28,7 +28,18 @@
     "mpiCmd": null,
     "cmdPrefix": "mkdir $PWD/work $PWD/home $PWD/scratch;",
     "parameterSet": {
-     "appArgs": [
+     "appArgs": [{
+      "name": "Filename Path",
+      "description": "Select a File path",
+      "inputMode": "REQUIRED",
+      "arg": "billing.mpeg"
+    },
+    {
+      "name": "Output location",
+      "description": "where to save file",
+      "inputMode": "REQUIRED",
+      "arg": "output.json"
+    },
     {
       "name": "min speakers",
       "description": "Minimum number of speakers.",
@@ -40,20 +51,9 @@
     }
     
   ],
-  "fileInputs":[ {
-    "name": "Filename Path",
-    "description": "Select a File path",
-    "inputMode": "REQUIRED",
-    "arg": "https://portals.tapis.io/v3/files/postits/redeem/9b6858ae-630a-4870-bc0c-163014cba031-010"
-  },
-  {
-    "name": "Output location",
-    "description": "where to save file ",
-    "inputMode": "REQUIRED",
-    "arg": "$HOME/output.json"
-    
-  }
-],
+ "fileInputs": [
+      
+    ],
       "containerArgs": [
         
         
