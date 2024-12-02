@@ -66,10 +66,11 @@ function delete_conda_environment() {
 echo $@
 export COOKBOOK_CONDA_ENV="whisper"
 export file_name=$1
-export output = $2
+export output=$2
 export min_speakers=$3
 echo $file_name 
-echo $output $min_speakers
+echo $output 
+echo $min_speakers
 export UPDATE_CONDA_ENV=true
 install_conda
 load_cuda
