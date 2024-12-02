@@ -43,7 +43,7 @@ RUN pip install pipx
 
 RUN pip install insanely-fast-whisper
 
-ENTRYPOINT [ "run.sh"  ] 
+ENTRYPOINT [ "./run.sh"  ] 
 
 
 
