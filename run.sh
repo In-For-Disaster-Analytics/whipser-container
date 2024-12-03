@@ -78,6 +78,6 @@ export_repo_variables
 init_directory
 handle_installation
 conda activate ${COOKBOOK_CONDA_ENV}
-insanely-fast-whisper --file-name $file_name --diarization_model nvidia/speakerverification_en_titanet_large --min-speakers $min_speakers --transcript-path $output
+insanely-fast-whisper --file-name $file_name --diarization_model nvidia/speakerverification_en_titanet_large --min-speakers $min_speakers --transcript-path $output --hf-token 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
 
 
