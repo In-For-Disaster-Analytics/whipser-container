@@ -78,6 +78,7 @@ export_repo_variables
 init_directory
 handle_installation
 conda activate ${COOKBOOK_CONDA_ENV}
-insanely-fast-whisper --file-name $file_name  --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $min_speakers --transcript-path $output --hf-token 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
+ffmpeg -i $file_name temp.mp3
+insanely-fast-whisper --file-name temp.mp3  --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $min_speakers --transcript-path $output --hf-token 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
 
 
