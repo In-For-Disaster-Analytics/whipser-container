@@ -44,7 +44,7 @@ COPY run.sh /tapis/run.sh
 RUN chmod +x /tapis/run.sh
 
 RUN pip install insanely-fast-whisper
-
+run pip install --upgrade *
 ENTRYPOINT ["/tapis/run.sh" ] 
 
 
