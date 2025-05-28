@@ -1,5 +1,5 @@
 {
-  "id": "Whisper-Transcriptionb",
+  "id": "whisper-transcription",
   "version": "0.1.4sha-9dd0813",
   "description": "Run an non-interactive script on TACC using docker.",
   "owner": "${apiUserId}",
@@ -21,7 +21,7 @@
     "execSystemInputDir": "${JobWorkingDir}",
     "execSystemOutputDir": "${JobWorkingDir}/output",
     "execSystemLogicalQueue": "gpu-a100-small",
-    "archiveSystemId": "cloud.data",
+    "archiveSystemId": "ls6",
     "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
     "archiveOnAppError": true,
     "isMpi": false,
@@ -30,13 +30,7 @@
     "parameterSet": {
       "appArgs": [
         {
-          "name": "Output location",
-          "description": "where to save file",
-          "inputMode": "REQUIRED",
-          "arg": "output.json"
-        },
-        {
-          "name": "min speakers",
+          "name": "min_speakers",
           "description": "Minimum number of speakers.",
           "inputMode": "REQUIRED",
           "arg": "1",
@@ -110,7 +104,7 @@
         "inputMode": "REQUIRED",
         "autoMountLocal": true,
         "sourceUrl": null,
-        "targetPath": "audio.mp3"
+        "targetPath": "source.audio"
       }
     ],
     "fileInputArrays": [],
