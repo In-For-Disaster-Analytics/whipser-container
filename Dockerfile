@@ -1,52 +1,14 @@
-FROM nvidia/cuda:12.3.0-runtime-ubuntu22.04
-
-LABEL maintainer="Will Mobley"
-
+FROM mambaorg/micromamba:2.1.1-cuda12.3.2-ubuntu22.04
 USER root
-
-EXPOSE 8888
-
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
+RUN apt-get update && apt-get install -y \
     curl \
-    fonts-liberation \
-    git \
-    locales \
-    pandoc \
-    python3 \
-    python3-pip \
-    ssh \
-    yasm\
-    wget \
-    unzip \
-    tar\
-    vim \
-    build-essential \
-    rsync \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
-    locale-gen
-
-RUN wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ffmpeg/7:7.0.1-5ubuntu2/ffmpeg_7.0.1.orig.tar.xz 
-
-RUN  tar -xJf ffmpeg_7.0.1.orig.tar.xz
-RUN ./ffmpeg-7.0.1/configure && make && make install
-
-RUN pip install --upgrade --no-cache-dir \
-    pip \
-    setuptools \
-    wheel
-RUN pip install pipx
-COPY run.sh /tapis/run.sh
-
-RUN chmod +x /tapis/run.sh
-
-RUN pip install insanely-fast-whisper
-run pip install --upgrade *
-ENTRYPOINT ["/tapis/run.sh" ] 
-
-
-
-
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+USER mambauser
+COPY --chown=$MAMBA_USER:$MAMBA_USER .binder/environment.yaml /tmp/env.yaml
+RUN micromamba install -y -n base -f /tmp/env.yaml && \
+    micromamba clean --all --yes
+COPY --chmod=755 run.sh /tapis/run.sh
+ENV PATH="/opt/conda/bin:${PATH}"
+ENV PATH "/code:$PATH"
+ENTRYPOINT [ "/tapis/run.sh" ]

@@ -1,0 +1,7 @@
+name: storyline
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12.9
+  - pip:
+      - insanely-fast-whisper==0.0.15

@@ -28,36 +28,25 @@
     "mpiCmd": null,
     "cmdPrefix": "mkdir $PWD/work $PWD/home $PWD/scratch;",
     "parameterSet": {
-     "appArgs": [{
-      "name": "Filename Path",
-      "description": "Select a File path",
-      "inputMode": "REQUIRED",
-      "arg": "billing.mpeg"
-    },
-    {
-      "name": "Output location",
-      "description": "where to save file",
-      "inputMode": "REQUIRED",
-      "arg": "output.json"
-    },
-    {
-      "name": "min speakers",
-      "description": "Minimum number of speakers.",
-      "inputMode": "REQUIRED",
-      "arg": "1",
-      "notes": {
-        "isHidden":false
-      }
-    }
-    
-  ],
- "fileInputs": [
-      
-    ],
+      "appArgs": [
+        {
+          "name": "Output location",
+          "description": "where to save file",
+          "inputMode": "REQUIRED",
+          "arg": "output.json"
+        },
+        {
+          "name": "min speakers",
+          "description": "Minimum number of speakers.",
+          "inputMode": "REQUIRED",
+          "arg": "1",
+          "notes": {
+            "isHidden": false
+          }
+        }
+      ],
+      "fileInputs": [],
       "containerArgs": [
-        
-        
-        
         {
           "name": "Jupyter Mounts",
           "description": "Mount for TAP functions and user dirs",
@@ -67,18 +56,15 @@
             "isHidden": true
           }
         },
-        
-       
-          {
-            "name": "NVIDIA Flag",
-            "description": "Flag to enable NVIDIA cuda",
-            "inputMode": "FIXED",
-            "arg": "--nv",
-            "notes": {
-              "isHidden": true
-            }
+        {
+          "name": "NVIDIA Flag",
+          "description": "Flag to enable NVIDIA cuda",
+          "inputMode": "FIXED",
+          "arg": "--nv",
+          "notes": {
+            "isHidden": true
           }
-       
+        }
       ],
       "schedulerOptions": [
         {
@@ -100,14 +86,33 @@
           }
         }
       ],
-      "envVariables": [],
+      "envVariables": [
+        {
+          "key": "APPTAINER_PWD",
+          "value": "/home/jovyan/work",
+          "description": "Start terminals in the working directory where host volumes are mounted.",
+          "inputMode": "FIXED",
+          "notes": {
+            "isHidden": true
+          }
+        }
+      ],
       "archiveFilter": {
         "includes": [],
         "excludes": [],
         "includeLaunchFiles": true
       }
     },
-    "fileInputs": [],
+    "fileInputs": [
+      {
+        "name": "Audio File",
+        "description": "Audio file to transcribe",
+        "inputMode": "REQUIRED",
+        "autoMountLocal": true,
+        "sourceUrl": null,
+        "targetPath": "audio.mp3"
+      }
+    ],
     "fileInputArrays": [],
     "nodeCount": 1,
     "coresPerNode": 1,
