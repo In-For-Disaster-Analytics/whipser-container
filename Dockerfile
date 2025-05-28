@@ -3,6 +3,7 @@ USER root
 RUN apt-get update && apt-get install -y \
     curl \
     ffmpeg \
+    file \
     && rm -rf /var/lib/apt/lists/*
 USER mambauser
 COPY --chown=$MAMBA_USER:$MAMBA_USER .binder/environment.yaml /tmp/env.yaml
