@@ -79,6 +79,6 @@ init_directory
 handle_installation
 conda activate ${COOKBOOK_CONDA_ENV}
 ffmpeg -i $file_name $WORK/temp.wav
-insanely-fast-whisper --file-name $WORK/temp.wav  --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $min_speakers --transcript-path $output --hf-token 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
+insanely-fast-whisper --file-name $WORK/temp.wav  --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $min_speakers --transcript-path $output  --batch-size 20 --hf-token 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
 
 
