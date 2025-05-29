@@ -1,12 +1,15 @@
 #!/bin/bash
 set -xe
-
-min_speakers=${1:-1}
-
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+# Set up parameters, input and output directories
+min_speakers=${1:-1}
+output="${_tapisExecSystemOutputDir}/output.json"
+
+# Change to input directory
 cd ${_tapisExecSystemInputDir}
 
-# Check if source audio exists
+# Check if input file exists
 if [ ! -f "${_tapisExecSystemInputDir}/source.audio" ]; then
     echo "Error: source.audio file not found"
     exit 1
@@ -25,4 +28,4 @@ else
     input_file="${_tapisExecSystemInputDir}/source.audio"
 fi
 
-insanely-fast-whisper --file-name "$input_file" --diarization_model pyannote/speaker-diarization-3.1 --min-speakers $min_speakers --transcript-path $output --hf-token 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
+insanely-fast-whisper --file-name "${input_file}" --diarization_model pyannote/speaker-diarization-3.1 --min-speakers "${min_speakers}" --transcript-path "${output}" --hf-token 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
