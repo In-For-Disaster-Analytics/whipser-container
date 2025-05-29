@@ -1,7 +1,6 @@
 #!/bin/bash
 set -xe
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-
 # Set up parameters, input and output directories
 min_speakers=${1:-1}
 output="${_tapisExecSystemOutputDir}/output.json"
@@ -28,4 +27,4 @@ else
     input_file="${_tapisExecSystemInputDir}/source.audio"
 fi
 
-insanely-fast-whisper --file-name "${input_file}" --diarization_model pyannote/speaker-diarization-3.1 --min-speakers "${min_speakers}" --transcript-path "${output}" --hf-token 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
+insanely-fast-whisper --file-name "${input_file}" --diarization_model pyannote/speaker-diarization-3.1 --min-speakers "${min_speakers}" --transcript-path "${output}" --hf-token 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 --batch-size 8
