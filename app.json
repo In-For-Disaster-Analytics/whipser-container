@@ -33,7 +33,6 @@
           "name": "min_speakers",
           "description": "Minimum number of speakers.",
           "inputMode": "REQUIRED",
-          "arg": "1",
           "notes": {
             "isHidden": false
           }
