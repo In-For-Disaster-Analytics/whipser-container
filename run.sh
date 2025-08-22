@@ -4,6 +4,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # Set up parameters, input and output directories
 min_speakers=${1}
 HF_TOKEN=${2}
+echo "HF_TOKEN is ${HF_TOKEN}"
 output="${_tapisExecSystemOutputDir}/output.json"
 
 # Change to input directory
