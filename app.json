@@ -36,7 +36,14 @@
           "notes": {
             "isHidden": false
           }
-        }
+        },
+        {
+          "name": "HF_TOKEN",
+          "description": "Hugging Face Token for accessing models.",
+          "inputMode": "REQUIRED",
+          "notes": {
+            "isHidden": true}
+          }
       ],
       "fileInputs": [],
       "containerArgs": [
