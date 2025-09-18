@@ -1,0 +1,76 @@
+name: Test Audio Conversion
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-conversion:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install FFmpeg
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg
+
+    - name: Create test data directory
+      run: |
+        mkdir -p tests/data
+
+    - name: Generate test audio files
+      run: |
+        # Generate a 5-second sine wave test file in different formats
+        ffmpeg -f lavfi -i "sine=frequency=440:duration=5" -ac 2 -ar 44100 tests/data/door.wav
+        ffmpeg -i tests/data/door.wav -c:a libmp3lame tests/data/door.mp3
+        ffmpeg -i tests/data/door.wav -c:a aac tests/data/door.mp4
+        ffmpeg -i tests/data/door.wav -c:a flac tests/data/door.flac
+        ffmpeg -i tests/data/door.wav -c:a libvorbis tests/data/door.ogg
+
+    - name: Make test script executable
+      run: chmod +x test_conversion.sh
+
+    - name: Run audio conversion tests
+      run: ./test_conversion.sh
+
+    - name: Verify output files were created
+      run: |
+        echo "Checking for generated WAV files..."
+        ls -la output_*.wav || echo "No output files found"
+
+        # Clean up any generated files
+        rm -f output_*.wav
+
+    - name: Test with actual files
+      run: |
+        echo "Testing conversion function with real files..."
+        source ./audio_conversion.sh
+
+        # Test each format
+        echo "Testing MP3..."
+        convert_to_wav "tests/data/door.mp3" "test_output.wav" && echo "MP3 test passed" || echo "MP3 test failed"
+
+        echo "Testing MP4..."
+        convert_to_wav "tests/data/door.mp4" "test_output.wav" && echo "MP4 test passed" || echo "MP4 test failed"
+
+        echo "Testing FLAC..."
+        convert_to_wav "tests/data/door.flac" "test_output.wav" && echo "FLAC test passed" || echo "FLAC test failed"
+
+        echo "Testing OGG..."
+        convert_to_wav "tests/data/door.ogg" "test_output.wav" && echo "OGG test passed" || echo "OGG test failed"
+
+        echo "Testing WAV (should use directly)..."
+        if convert_to_wav "tests/data/door.wav" "test_output.wav"; then
+          echo "WAV test failed (should not convert)"
+          exit 1
+        else
+          echo "WAV test passed (used directly)"
+        fi
+
+        # Clean up
+        rm -f test_output.wav
