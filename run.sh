@@ -16,16 +16,13 @@ if [ ! -f "${_tapisExecSystemInputDir}/source.audio" ]; then
     exit 1
 fi
 
-# Get file extension
-file_extension=$(file -b --mime-type "${_tapisExecSystemInputDir}/source.audio" | cut -d'/' -f2)
+# Source the audio conversion functions
+source "$(dirname "$0")/audio_conversion.sh"
 
-# If it's an MP3, convert to WAV
-if [ "$file_extension" = "mpeg" ]; then
-    echo "Converting MP3 to WAV..."
-    ffmpeg -i "${_tapisExecSystemInputDir}/source.audio" "${_tapisExecSystemInputDir}/audio.wav"
+# Convert to WAV if needed
+if convert_to_wav "${_tapisExecSystemInputDir}/source.audio" "${_tapisExecSystemInputDir}/audio.wav"; then
     input_file="${_tapisExecSystemInputDir}/audio.wav"
 else
-    # For WAV and OGG, use the file directly
     input_file="${_tapisExecSystemInputDir}/source.audio"
 fi
 
